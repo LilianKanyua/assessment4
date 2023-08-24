@@ -4,7 +4,10 @@ import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kanyua.R
 import com.example.kanyua.databinding.ActivityMainBinding
 import com.example.kanyua.models.Posts
@@ -25,32 +28,32 @@ class MainActivity : AppCompatActivity(){
         postsAdapter = PostsAdapter(emptyList())
         binding.rvPosts.adapter=postsAdapter
     }
-
-r
-}
-
-
     override fun onResume() {
         super.onResume()
 
 
-        postsViewModel.fetchPosts()
-        postsViewMode
+
         postsViewModel.fetchPosts()
         postsViewModel.postsLiveData.observe(this, Observer { postsList ->
             var postsAdapter = PostsAdapter(postsList ?: emptyList())
             binding.rvPosts.layoutManager = LinearLayoutManager(this)
-            binding.rvPosts.adapter = postssAdapter
+            binding.rvPosts.adapter = postsAdapter
 
             Toast
                 .makeText(baseContext, "Fetched ${postsList?.size}posts", Toast.LENGTH_LONG)
                 .show()
         })
 
-
-        getPosts()
-    }
 }
+
+//    getPosts()
+
+
+
+
+
+    }
+
 
 
 
